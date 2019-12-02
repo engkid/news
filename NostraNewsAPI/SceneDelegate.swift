@@ -22,7 +22,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 		self.window = UIWindow(frame: windowScene.coordinateSpace.bounds)
 		window?.windowScene = windowScene
 		
-		let mainVC: UIViewController = ViewController()
+		let interactor: NewsHomeInteractor = NewsHomeInteractor()
+		let mainVC: NewsHomeViewController = NewsHomeViewController()
+		mainVC.viewModel = NewsHomeViewModel(interactor: interactor)
 		let navVC: UINavigationController = UINavigationController(rootViewController: mainVC)
 		
 		self.window?.rootViewController = navVC

@@ -10,6 +10,40 @@ import Foundation
 
 internal final class NewsHomeViewModel {
 	
+	private let interactor: NewsHomeInteractor
+	
+	var newsDidChange: (() -> Void)?
+	
+	var news: News? {
+		
+		didSet {
+			self.newsDidChange?()
+		}
+		
+	}
+	
+	var title: String {
+		return "Nostra News"
+	}
+	
 	// TODO: - Business logic here
+	init(interactor: NewsHomeInteractor) {
+		self.interactor = interactor
+	}
+	
+	func getNews() {
+		
+		interactor.getNews(successBlock: { [weak self] (news: News) in
+			
+			guard let self = self else {
+				return
+			}
+			
+			self.news = news
+			
+		}) { (error: Error?) in
+			
+		}
+	}
 	
 }

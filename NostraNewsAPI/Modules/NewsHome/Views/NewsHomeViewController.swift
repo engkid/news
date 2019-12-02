@@ -12,10 +12,30 @@ class NewsHomeViewController: UIViewController {
 
 	// TODO: - View setup here
 	
+	var viewModel: NewsHomeViewModel?
+	
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+		title = viewModel?.title
+		viewModel?.getNews()
+		configureNewsObserver()
     }
-
+	
+	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+		super.init(nibName: "NewsHomeViewController", bundle: nil)
+	}
+	
+	required init?(coder: NSCoder) {
+		fatalError("init(coder:) has not been implemented")
+	}
+	
+	private func configureNewsObserver() {
+		
+		viewModel?.newsDidChange = { [weak self] in
+			print("reload table here")
+		}
+		
+	}
+	
 }
