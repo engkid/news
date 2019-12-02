@@ -33,7 +33,7 @@ internal final class NewsHomeViewModel {
 	
 	func getNews() {
 		
-		interactor.getNews(successBlock: { [weak self] (news: News) in
+		interactor.getNews(pageSize: 5, page: 1, successBlock: { [weak self] (news: News) in
 			
 			guard let self = self else {
 				return

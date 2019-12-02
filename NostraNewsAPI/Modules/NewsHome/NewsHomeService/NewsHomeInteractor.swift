@@ -10,9 +10,16 @@ import Foundation
 
 internal class NewsHomeInteractor {
 	
-	func getNews(successBlock: @escaping ((_ news: News) -> Void), failureBlock: @escaping ((_ error: Error?) -> Void)) {
+	func getNews(pageSize: Int, page: Int, successBlock: @escaping ((_ news: News) -> Void), failureBlock: @escaping ((_ error: Error?) -> Void)) {
 		
-		NetworkService.getRequest(url: "https://newsapi.org/v2/everything?q=bitcoin&from=2019-11-02&sortBy=publishedAt&apiKey=2486c0dc1c9847baafb8dc5ed4901f06", parameter: nil) { (response: URLResponse?, data: Data?, error: Error?) in
+		let param = [
+			"pageSize": String(pageSize),
+			"page": String(page),
+			"sources" : "bbc-news",
+			"apiKey" : "2486c0dc1c9847baafb8dc5ed4901f06"
+		]
+		
+		NetworkService.getRequest(url: "https://newsapi.org/v2/top-headlines", parameter: param) { (response: URLResponse?, data: Data?, error: Error?) in
 			
 			guard let data = data else {
 				

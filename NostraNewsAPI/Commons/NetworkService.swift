@@ -11,9 +11,17 @@ import Foundation
 class NetworkService {
 	
 	// TODO: - Networking layer here
-	static func getRequest(url: String, parameter: [String: Any]?, completion: @escaping ((_ response: URLResponse?, _ data: Data?, _ error: Error?) -> Void)) {
+	static func getRequest(url: String, parameter: [String: String]?, completion: @escaping ((_ response: URLResponse?, _ data: Data?, _ error: Error?) -> Void)) {
 		
-		guard let urlRequest = URL(string: url) else {
+		guard var urlComp = URLComponents(string: url) else {
+			return
+		}
+		
+		urlComp.queryItems = parameter?.map({ (key, value) -> URLQueryItem in
+			return URLQueryItem(name: key, value: value)
+		})
+		
+		guard let urlRequest = urlComp.url else {
 			return
 		}
 		
