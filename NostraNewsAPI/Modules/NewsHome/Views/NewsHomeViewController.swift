@@ -62,7 +62,11 @@ class NewsHomeViewController: UIViewController {
 	
 	private func configureNewsObserver() {
 		
-		viewModel?.newsDidChange = { [weak self] in
+		viewModel?.newsDidChange = {
+			
+		}
+		
+		viewModel?.onReload = { [weak self] in
 			
 			guard let self = self else {
 				return
@@ -71,7 +75,6 @@ class NewsHomeViewController: UIViewController {
 			DispatchQueue.main.async {
 				self.newsTable?.reloadData()
 			}
-			
 		}
 		
 		viewModel?.onError = { [weak self] (error: Error) in
@@ -100,7 +103,7 @@ extension NewsHomeViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
-		guard let articles = viewModel?.news?.articles else {
+		guard let articles = viewModel?.articles else {
 			return 0
 		}
 		
@@ -111,7 +114,7 @@ extension NewsHomeViewController: UITableViewDataSource {
 		
 		// TODO: - Configure table view cell here
 		
-		guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as? NewsTableViewCell, let article = viewModel?.news?.articles[indexPath.row] else {
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as? NewsTableViewCell, let article = viewModel?.articles[indexPath.row] else {
 			return UITableViewCell()
 		}
 		
@@ -123,6 +126,16 @@ extension NewsHomeViewController: UITableViewDataSource {
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 223
+	}
+	
+	func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+		
+		guard let viewModel = viewModel, indexPath.row == viewModel.articles.count - 1, !viewModel.isEndPage else {
+			return
+		}
+		
+		getNews()
+		
 	}
 	
 }
