@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NewsHomeViewController" customModule="NostraNewsAPI" customModuleProvider="target">
             <connections>
+                <outlet property="newsTable" destination="xvQ-gP-f6M" id="tEl-oo-GPU"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>

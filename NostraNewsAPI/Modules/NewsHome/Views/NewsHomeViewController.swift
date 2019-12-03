@@ -9,7 +9,12 @@
 import UIKit
 
 class NewsHomeViewController: UIViewController {
+	
+	enum newsTableSection: CaseIterable {
+		case news
+	}
 
+	@IBOutlet weak var newsTable: UITableView?
 	// TODO: - View setup here
 	
 	var viewModel: NewsHomeViewModel?
@@ -18,8 +23,9 @@ class NewsHomeViewController: UIViewController {
         super.viewDidLoad()
 
 		title = viewModel?.title
-		viewModel?.getNews()
+		getNews()
 		configureNewsObserver()
+		configureNewsTable()
     }
 	
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
@@ -30,11 +36,82 @@ class NewsHomeViewController: UIViewController {
 		fatalError("init(coder:) has not been implemented")
 	}
 	
+	// MARK: - Private methods
+	private func configureNewsTable() {
+		
+		newsTable?.delegate = self
+		newsTable?.dataSource = self
+		newsTable?.estimatedRowHeight = 223
+		newsTable?.rowHeight = UITableView.automaticDimension
+		
+		newsTable?.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell")
+		
+	}
+	
+	private func getNews() {
+		
+		viewModel?.getNews()
+		
+	}
+	
 	private func configureNewsObserver() {
 		
 		viewModel?.newsDidChange = { [weak self] in
-			print("reload table here")
+			
+			guard let self = self else {
+				return
+			}
+			
+			DispatchQueue.main.async {
+				self.newsTable?.reloadData()
+			}
+			
 		}
+		
+	}
+	
+}
+
+extension NewsHomeViewController: UITableViewDataSource {
+	
+	func numberOfSections(in tableView: UITableView) -> Int {
+		return newsTableSection.allCases.count
+	}
+	
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		
+		guard let articles = viewModel?.news?.articles else {
+			return 0
+		}
+		
+		return articles.count
+	}
+	
+	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
+		// TODO: - Configure table view cell here
+		
+		guard let cell = tableView.dequeueReusableCell(withIdentifier: "NewsTableViewCell", for: indexPath) as? NewsTableViewCell, let article = viewModel?.news?.articles[indexPath.row] else {
+			return UITableViewCell()
+		}
+		
+		cell.configureArticle(article: article)
+		cell.selectionStyle = .none
+		
+		return cell
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 223
+	}
+	
+}
+
+extension NewsHomeViewController: UITableViewDelegate {
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		
 		
 	}
 	
