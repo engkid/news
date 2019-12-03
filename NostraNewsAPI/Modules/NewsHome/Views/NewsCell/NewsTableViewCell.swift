@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class NewsTableViewCell: UITableViewCell {
 	
@@ -22,6 +23,15 @@ class NewsTableViewCell: UITableViewCell {
 		
 		self.newsTitle?.text = article.title
 		self.newsSource?.text = article.source.name
+		
+		self.newsSource?.textColor = UIColor.red
+		self.newsImage?.contentMode = .scaleToFill
+		
+		guard let url = URL(string: article.urlToImage ?? "") else {
+			return
+		}
+		
+		self.newsImage?.sd_setImage(with: url, placeholderImage: UIImage(named: "newsSplash"), options: .retryFailed, context: nil)
 	}
     
 }
