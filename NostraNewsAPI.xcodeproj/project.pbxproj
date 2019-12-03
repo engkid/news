@@ -32,6 +32,9 @@
 		1EDEC366239627EC00D97778 /* ErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDEC364239627EC00D97778 /* ErrorPageViewController.swift */; };
 		1EDEC367239627EC00D97778 /* ErrorPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EDEC365239627EC00D97778 /* ErrorPageViewController.xib */; };
 		1EDEC36923962D0C00D97778 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDEC36823962D0C00D97778 /* NetworkManager.swift */; };
+		1EDF52A02396C3500017A817 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF529E2396C3500017A817 /* NewsDetailViewController.swift */; };
+		1EDF52A12396C3500017A817 /* NewsDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EDF529F2396C3500017A817 /* NewsDetailViewController.xib */; };
+		1EDF52A42396C5A50017A817 /* NewsDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDF52A32396C5A50017A817 /* NewsDetailViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +99,9 @@
 		1EDEC364239627EC00D97778 /* ErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageViewController.swift; sourceTree = "<group>"; };
 		1EDEC365239627EC00D97778 /* ErrorPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorPageViewController.xib; sourceTree = "<group>"; };
 		1EDEC36823962D0C00D97778 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		1EDF529E2396C3500017A817 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
+		1EDF529F2396C3500017A817 /* NewsDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsDetailViewController.xib; sourceTree = "<group>"; };
+		1EDF52A32396C5A50017A817 /* NewsDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,6 +190,7 @@
 		1EDEC33523913F6B00D97778 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1EDF529C2396C2FE0017A817 /* NewsDetail */,
 				1EDEC363239627C900D97778 /* ErrorPage */,
 				1EDEC33823913F8F00D97778 /* NewsHome */,
 			);
@@ -278,6 +285,32 @@
 				1EDEC365239627EC00D97778 /* ErrorPageViewController.xib */,
 			);
 			path = ErrorPage;
+			sourceTree = "<group>";
+		};
+		1EDF529C2396C2FE0017A817 /* NewsDetail */ = {
+			isa = PBXGroup;
+			children = (
+				1EDF52A22396C58C0017A817 /* ViewModels */,
+				1EDF529D2396C30A0017A817 /* Views */,
+			);
+			path = NewsDetail;
+			sourceTree = "<group>";
+		};
+		1EDF529D2396C30A0017A817 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1EDF529E2396C3500017A817 /* NewsDetailViewController.swift */,
+				1EDF529F2396C3500017A817 /* NewsDetailViewController.xib */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1EDF52A22396C58C0017A817 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				1EDF52A32396C5A50017A817 /* NewsDetailViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -386,6 +419,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EDF52A12396C3500017A817 /* NewsDetailViewController.xib in Resources */,
 				1EDEC31223913EEF00D97778 /* LaunchScreen.storyboard in Resources */,
 				1EDEC367239627EC00D97778 /* ErrorPageViewController.xib in Resources */,
 				1EDEC30F23913EEF00D97778 /* Assets.xcassets in Resources */,
@@ -438,12 +472,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EDF52A42396C5A50017A817 /* NewsDetailViewModel.swift in Sources */,
 				1EDEC36923962D0C00D97778 /* NetworkManager.swift in Sources */,
 				1EDEC3472395232300D97778 /* Articles.swift in Sources */,
 				1EDEC33B23913FB400D97778 /* NewsHomeViewController.swift in Sources */,
 				1EDEC3532395FF2700D97778 /* NewsTableViewCell.swift in Sources */,
 				1EDEC34B2395243600D97778 /* News.swift in Sources */,
 				1EDEC3412391405400D97778 /* NewsHomeViewModel.swift in Sources */,
+				1EDF52A02396C3500017A817 /* NewsDetailViewController.swift in Sources */,
 				1EDEC366239627EC00D97778 /* ErrorPageViewController.swift in Sources */,
 				1EDEC34D2395252900D97778 /* NewsHomeInteractor.swift in Sources */,
 				1EDEC34F23953DA300D97778 /* Source.swift in Sources */,

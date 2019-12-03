@@ -144,7 +144,15 @@ extension NewsHomeViewController: UITableViewDelegate {
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
+		guard let articles = viewModel?.articles[indexPath.row] else {
+			return
+		}
 		
+		let newsDetailViewModel: NewsDetailViewModel = NewsDetailViewModel(articles: articles)
+		let newsDetailViewController: NewsDetailViewController = NewsDetailViewController()
+		newsDetailViewController.viewModel = newsDetailViewModel
+		
+		self.navigationController?.pushViewController(newsDetailViewController, animated: true)
 		
 	}
 	
