@@ -23,10 +23,15 @@ class NewsHomeViewController: UIViewController {
         super.viewDidLoad()
 
 		title = viewModel?.title
-		getNews()
 		configureNewsObserver()
 		configureNewsTable()
     }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		getNews()
+	}
 	
 	override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: "NewsHomeViewController", bundle: nil)
@@ -43,6 +48,7 @@ class NewsHomeViewController: UIViewController {
 		newsTable?.dataSource = self
 		newsTable?.estimatedRowHeight = 223
 		newsTable?.rowHeight = UITableView.automaticDimension
+		newsTable?.separatorStyle = .none
 		
 		newsTable?.register(UINib(nibName: "NewsTableViewCell", bundle: nil), forCellReuseIdentifier: "NewsTableViewCell")
 		
@@ -65,6 +71,20 @@ class NewsHomeViewController: UIViewController {
 			DispatchQueue.main.async {
 				self.newsTable?.reloadData()
 			}
+			
+		}
+		
+		viewModel?.onError = { [weak self] (error: Error) in
+			
+			guard let self = self else {
+				return
+			}
+			
+			DispatchQueue.main.async {
+				let errorVc: ErrorPageViewController = ErrorPageViewController()
+				self.navigationController?.pushViewController(errorVc, animated: true)
+			}
+			
 			
 		}
 		

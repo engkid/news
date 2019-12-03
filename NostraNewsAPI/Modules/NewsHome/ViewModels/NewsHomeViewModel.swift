@@ -13,11 +13,25 @@ internal final class NewsHomeViewModel {
 	private let interactor: NewsHomeInteractor
 	
 	var newsDidChange: (() -> Void)?
+	var onError: ((Error) -> Void)?
 	
 	var news: News? {
 		
 		didSet {
 			self.newsDidChange?()
+		}
+		
+	}
+	
+	var error: Error? {
+		
+		didSet {
+			
+			guard let error = error else {
+				return
+			}
+			
+			self.onError?(error)
 		}
 		
 	}
@@ -42,6 +56,8 @@ internal final class NewsHomeViewModel {
 			self.news = news
 			
 		}) { (error: Error?) in
+			
+			self.error = error
 			
 		}
 	}

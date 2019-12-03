@@ -27,6 +27,11 @@
 		1EDEC35B2396137B00D97778 /* SDWebImage.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDEC3582396137A00D97778 /* SDWebImage.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1EDEC35C2396137B00D97778 /* SDWebImageMapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDEC3592396137B00D97778 /* SDWebImageMapKit.framework */; };
 		1EDEC35D2396137B00D97778 /* SDWebImageMapKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDEC3592396137B00D97778 /* SDWebImageMapKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1EDEC3612396248E00D97778 /* Reachability.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDEC3602396248E00D97778 /* Reachability.framework */; };
+		1EDEC3622396248E00D97778 /* Reachability.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1EDEC3602396248E00D97778 /* Reachability.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1EDEC366239627EC00D97778 /* ErrorPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDEC364239627EC00D97778 /* ErrorPageViewController.swift */; };
+		1EDEC367239627EC00D97778 /* ErrorPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1EDEC365239627EC00D97778 /* ErrorPageViewController.xib */; };
+		1EDEC36923962D0C00D97778 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1EDEC36823962D0C00D97778 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +59,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				1EDEC35D2396137B00D97778 /* SDWebImageMapKit.framework in Embed Frameworks */,
+				1EDEC3622396248E00D97778 /* Reachability.framework in Embed Frameworks */,
 				1EDEC35B2396137B00D97778 /* SDWebImage.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -86,6 +92,10 @@
 		1EDEC3522395FF2700D97778 /* NewsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NewsTableViewCell.xib; sourceTree = "<group>"; };
 		1EDEC3582396137A00D97778 /* SDWebImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImage.framework; path = Carthage/Build/iOS/SDWebImage.framework; sourceTree = "<group>"; };
 		1EDEC3592396137B00D97778 /* SDWebImageMapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDWebImageMapKit.framework; path = Carthage/Build/iOS/SDWebImageMapKit.framework; sourceTree = "<group>"; };
+		1EDEC3602396248E00D97778 /* Reachability.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Reachability.framework; path = Carthage/Build/iOS/Reachability.framework; sourceTree = "<group>"; };
+		1EDEC364239627EC00D97778 /* ErrorPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorPageViewController.swift; sourceTree = "<group>"; };
+		1EDEC365239627EC00D97778 /* ErrorPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorPageViewController.xib; sourceTree = "<group>"; };
+		1EDEC36823962D0C00D97778 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +104,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EDEC35C2396137B00D97778 /* SDWebImageMapKit.framework in Frameworks */,
+				1EDEC3612396248E00D97778 /* Reachability.framework in Frameworks */,
 				1EDEC35A2396137B00D97778 /* SDWebImage.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +184,7 @@
 		1EDEC33523913F6B00D97778 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
+				1EDEC363239627C900D97778 /* ErrorPage */,
 				1EDEC33823913F8F00D97778 /* NewsHome */,
 			);
 			path = Modules;
@@ -182,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				1EDEC3422391408400D97778 /* NetworkService.swift */,
+				1EDEC36823962D0C00D97778 /* NetworkManager.swift */,
 			);
 			path = Commons;
 			sourceTree = "<group>";
@@ -251,10 +264,20 @@
 		1EDEC3572396137A00D97778 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1EDEC3602396248E00D97778 /* Reachability.framework */,
 				1EDEC3582396137A00D97778 /* SDWebImage.framework */,
 				1EDEC3592396137B00D97778 /* SDWebImageMapKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		1EDEC363239627C900D97778 /* ErrorPage */ = {
+			isa = PBXGroup;
+			children = (
+				1EDEC364239627EC00D97778 /* ErrorPageViewController.swift */,
+				1EDEC365239627EC00D97778 /* ErrorPageViewController.xib */,
+			);
+			path = ErrorPage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +387,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1EDEC31223913EEF00D97778 /* LaunchScreen.storyboard in Resources */,
+				1EDEC367239627EC00D97778 /* ErrorPageViewController.xib in Resources */,
 				1EDEC30F23913EEF00D97778 /* Assets.xcassets in Resources */,
 				1EDEC3542395FF2700D97778 /* NewsTableViewCell.xib in Resources */,
 				1EDEC33C23913FB400D97778 /* NewsHomeViewController.xib in Resources */,
@@ -397,6 +421,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/SDWebImage.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/SDWebImageMapKit.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Reachability.framework",
 			);
 			outputFileListPaths = (
 			);
@@ -413,11 +438,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EDEC36923962D0C00D97778 /* NetworkManager.swift in Sources */,
 				1EDEC3472395232300D97778 /* Articles.swift in Sources */,
 				1EDEC33B23913FB400D97778 /* NewsHomeViewController.swift in Sources */,
 				1EDEC3532395FF2700D97778 /* NewsTableViewCell.swift in Sources */,
 				1EDEC34B2395243600D97778 /* News.swift in Sources */,
 				1EDEC3412391405400D97778 /* NewsHomeViewModel.swift in Sources */,
+				1EDEC366239627EC00D97778 /* ErrorPageViewController.swift in Sources */,
 				1EDEC34D2395252900D97778 /* NewsHomeInteractor.swift in Sources */,
 				1EDEC34F23953DA300D97778 /* Source.swift in Sources */,
 				1EDEC30623913EEB00D97778 /* AppDelegate.swift in Sources */,
