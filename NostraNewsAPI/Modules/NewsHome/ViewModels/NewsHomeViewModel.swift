@@ -56,25 +56,27 @@ internal final class NewsHomeViewModel {
 		
 		page += 1
 		
-		interactor.fetchData(pageSize: pageSize, page: page, successBlock: { [weak self] (news: News) in
+		interactor.fetchData(pageSize: pageSize, page: page) { [weak self] (result: Result<News, Error>) in
 			
 			guard let self = self else {
 				return
 			}
 			
-			self.news = news
-			
-			if news.articles.count > 0 {
-				self.articles += news.articles
-			} else {
-				self.isEndPage = true
+			switch result {
+			case .success(let news):
+				self.news = news
+				
+				if news.articles.count > 0 {
+					self.articles += news.articles
+				} else {
+					self.isEndPage = true
+				}
+				
+			case .failure(let error):
+				self.error = error
 			}
 			
 			self.onReload?()
-			
-		}) { (error: Error?) in
-			
-			self.error = error
 			
 		}
 	}

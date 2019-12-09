@@ -10,7 +10,7 @@ import Foundation
 
 internal class NewsHomeInteractor {
 	
-	func fetchData<D: Decodable>(pageSize: Int, page: Int, successBlock: @escaping ((_ news: D) -> Void), failureBlock: @escaping ((_ error: Error?) -> Void)) {
+	func fetchData<D: Decodable>(pageSize: Int, page: Int, result: @escaping (Result<D, Error>) -> Void) {
 		
 		let param = [
 			"pageSize": String(pageSize),
@@ -23,8 +23,8 @@ internal class NewsHomeInteractor {
 			
 			guard let data = data else {
 				
-				if error != nil {
-					failureBlock(error)
+				if let error = error {
+					result(.failure(error))
 				}
 				
 				return
@@ -36,11 +36,11 @@ internal class NewsHomeInteractor {
 				
 				let d = try decoder.decode(D.self, from: data)
 				
-				successBlock(d)
+				result(.success(d))
 				
 			} catch let error {
 				
-				failureBlock(error)
+				result(.failure(error))
 				
 			}
 			
